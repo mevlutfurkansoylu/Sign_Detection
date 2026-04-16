@@ -77,7 +77,7 @@ def run_detection(source: Path, output: Path, yolo_model: str, confidence: float
         with torch.no_grad():
             logits = classifier(input_tensor)
             probs = torch.softmax(logits[0], dim=0)
-            cls_idx = int(torch.argmax(probs).item())
+            cls_idx = torch.argmax(probs).item()
             cls_name = categories[cls_idx]
             cls_conf = float(probs[cls_idx].item())
 
