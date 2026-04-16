@@ -3,7 +3,9 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
-LINE_THICKNESS = 2
+DEFAULT_LINE_THICKNESS = 2
+TEXT_MIN_Y_OFFSET = 20
+TEXT_Y_PADDING = 10
 
 
 def parse_args() -> argparse.Namespace:
@@ -82,15 +84,21 @@ def run_detection(source: Path, output: Path, yolo_model: str, confidence: float
             cls_conf = float(probs[cls_idx].item())
 
         label = f"{cls_name} {cls_conf:.2f}"
-        cv2.rectangle(image, (x1, y1), (x2, y2), (0, 255, 0), LINE_THICKNESS)
+        cv2.rectangle(
+            image,
+            (x1, y1),
+            (x2, y2),
+            (0, 255, 0),
+            DEFAULT_LINE_THICKNESS,
+        )
         cv2.putText(
             image,
             label,
-            (x1, max(20, y1 - 10)),
+            (x1, max(TEXT_MIN_Y_OFFSET, y1 - TEXT_Y_PADDING)),
             cv2.FONT_HERSHEY_SIMPLEX,
             0.5,
             (0, 255, 0),
-            LINE_THICKNESS,
+            DEFAULT_LINE_THICKNESS,
             cv2.LINE_AA,
         )
 
