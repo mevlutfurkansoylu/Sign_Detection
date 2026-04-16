@@ -1,2 +1,26 @@
 # Sign_Detection
-Yolo+MobileNet
+
+Sign detection pipeline using **YOLO** for detection and **MobileNet** for classification.
+
+## Setup
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+## Usage
+
+```bash
+python sign_detection.py \
+  --source /absolute/path/to/image.jpg \
+  --output /absolute/path/to/output.jpg \
+  --yolo-model yolov8n.pt
+```
+
+Use a traffic-sign-trained YOLO model for best results.
+
+Notes:
+- The default `yolov8n.pt` is a general COCO model and is not specialized for traffic signs.
+- MobileNetV2 in this project uses ImageNet weights, so classification labels are generic unless you fine-tune it on a sign dataset (e.g., GTSRB) and replace the classifier weights.
