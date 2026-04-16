@@ -20,3 +20,7 @@ python sign_detection.py \
 ```
 
 Use a traffic-sign-trained YOLO model for best results.
+
+Notes:
+- The default `yolov8n.pt` is a general COCO model and is not specialized for traffic signs.
+- MobileNetV2 in this project uses ImageNet weights, so classification labels are generic unless you fine-tune it on a sign dataset (e.g., GTSRB) and replace the classifier weights.

@@ -55,7 +55,7 @@ def run_detection(source: Path, output: Path, yolo_model: str, confidence: float
     )
     categories = classifier_weights.meta["categories"]
 
-    results = detector.predict(source=str(source), conf=confidence, verbose=False)
+    results = detector.predict(source=image, conf=confidence, verbose=False)
     boxes = results[0].boxes
     if boxes is None or len(boxes) == 0:
         output.parent.mkdir(parents=True, exist_ok=True)
