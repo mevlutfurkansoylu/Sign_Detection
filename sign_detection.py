@@ -3,6 +3,8 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
+LINE_THICKNESS = 2
+
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Sign detection with YOLO + MobileNet.")
@@ -80,7 +82,7 @@ def run_detection(source: Path, output: Path, yolo_model: str, confidence: float
             cls_conf = float(probs[cls_idx].item())
 
         label = f"{cls_name} {cls_conf:.2f}"
-        cv2.rectangle(image, (x1, y1), (x2, y2), (0, 255, 0), 2)
+        cv2.rectangle(image, (x1, y1), (x2, y2), (0, 255, 0), LINE_THICKNESS)
         cv2.putText(
             image,
             label,
@@ -88,7 +90,7 @@ def run_detection(source: Path, output: Path, yolo_model: str, confidence: float
             cv2.FONT_HERSHEY_SIMPLEX,
             0.5,
             (0, 255, 0),
-            2,
+            LINE_THICKNESS,
             cv2.LINE_AA,
         )
 

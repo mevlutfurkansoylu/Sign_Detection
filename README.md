@@ -13,7 +13,7 @@ pip install -r requirements.txt
 ## Usage
 
 ```bash
-python /home/runner/work/Sign_Detection/Sign_Detection/sign_detection.py \
+python sign_detection.py \
   --source /absolute/path/to/image.jpg \
   --output /absolute/path/to/output.jpg \
   --yolo-model yolov8n.pt
